@@ -1,0 +1,63 @@
+<!--<ion-header style="background: #339967;">
+  <ion-toolbar style="margin-top: 10%;" color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>RECUPERE SUA SENHA</ion-title>
+  </ion-toolbar>
+</ion-header>-->
+
+<ion-content>
+  <ion-toolbar color="light">
+    <ion-title>Recuperar senha</ion-title>
+    <ion-buttons slot="end" style="margin-top: 10%;" color="light">
+      <ion-menu-button>
+        <ion-icon color="primary" name="ellipsis-vertical"></ion-icon>
+      </ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-list-header style="background-color: white; margin-top: 0px;" lines="full">
+    <ion-label color="primary">Sistema de recuperação de senha</ion-label>
+  </ion-list-header>
+
+
+  <div style="width:100%;text-align: center;align-content: center;align-self: center;">
+    <img src="../../../assets/image/logo.png" height="150px">
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <ion-item color="none" lines="full">
+          <ion-label position="stacked" color="primary">Email</ion-label>
+          <ion-input required="false" placeholder="Informe seu email" [(ngModel)]="email" type="email"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-item color="none" lines="full">
+          <ion-label position="stacked" color="primary">Certidão de pessoa física</ion-label>
+          <ion-input required="false" placeholder="Informe seu CPF" (ionChange)="ajustarCPF()" name="senha"
+            [(ngModel)]="cpf" type="tel"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <br>
+    <ion-row>
+      <ion-col size="1">
+      </ion-col>
+      <ion-col size="10">
+        <ion-button fill="solid" expand="block" color="primary" (click)="enviar()">Enviar</ion-button>
+      </ion-col>
+      <ion-col size="1">
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <p *ngIf="nome !=''" style="margin: 5%; margin-top: 10%;">
+    Conta encontrada, bem vindo de volta Sr. {{nome}}, fico feliz em poder ajudar a achar sua conta de volta,
+    a sua senha é: {{senha}}.
+  </p>
+
+</ion-content>

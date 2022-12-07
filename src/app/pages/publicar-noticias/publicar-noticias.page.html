@@ -1,0 +1,79 @@
+<!--<ion-header style="background: #339967;">
+  <ion-toolbar style="margin-top: 10%;" color="primary">
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>PUBLICAÇÃO DE NOTÍCIAS</ion-title>
+  </ion-toolbar>
+</ion-header>
+-->
+<ion-content>
+  
+  <ion-toolbar color="light">
+    <ion-buttons slot="end" style="margin-top: 10%;" color="light">
+      <ion-menu-button>
+        <ion-icon color="primary" name="ellipsis-vertical"></ion-icon>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title>Publicação de noticias</ion-title>
+  </ion-toolbar>
+  <ion-list-header style="background-color: white; margin-top: 0px;"  lines="full">
+    <ion-label color="primary">Publique aqui as noticias</ion-label>
+  </ion-list-header>
+  <br>
+  <div (click)="pegarFoto()" style="text-align: center;margin: 5%;align-content: center;align-self: center;">
+    <img [src]="imagem" width="75%">
+  </div>
+  <br> 
+  <ion-item color="none" style="margin-left: 5%; margin-right: 5%;">
+    <ion-label position="stacked" color="primary">Título</ion-label>
+    <ion-input type="text" name="titulo" placeholder="Informe o titulo da noticia" [(ngModel)]="titulo"></ion-input>
+  </ion-item>
+  <br>
+  <ion-item color="none" style="margin-left: 5%; margin-right: 5%;">
+    <ion-label position="stacked" color="primary">Nome</ion-label>
+    <ion-input type="text" name="nome" placeholder="Quem publicou essa noticia ?" [(ngModel)]="nome"></ion-input>
+  </ion-item>
+  <br>
+  <ion-item color="none" style="margin-left: 5%; margin-right: 5%;">
+    <ion-label position="stacked">Assunto</ion-label>
+    <ion-textarea [(ngModel)]="assunto" rows="6" cols="20" placeholder="Informe o assunto que vai na pagina de inicio.">
+    </ion-textarea>
+  </ion-item>
+  <br>
+  <ion-item color="none" style="margin-left: 5%; margin-right: 5%;">
+    <ion-label position="stacked">Mensagem primária</ion-label>
+    <ion-textarea [(ngModel)]="mensagem" rows="6" cols="20" placeholder="Informe a mensagem que vai acima da imagem.">
+    </ion-textarea>
+  </ion-item>
+  <br>
+  <ion-item color="none" style="margin-left: 5%; margin-right: 5%;">
+    <ion-label position="stacked">Mensagem secundária</ion-label>
+    <ion-textarea [(ngModel)]="mensagem2" rows="6" cols="20" placeholder="Informe a mensagem que vai abaixo da imagem.">
+    </ion-textarea>
+  </ion-item>
+  <br>
+  <ion-item color="none" style="margin-left: 5%; margin-right: 5%;">
+    <ion-label position="stacked" color="primary">Link do pdf</ion-label>
+    <ion-input name="pdf" placeholder="Informe o link do PDF" [(ngModel)]="pdf" type="text"></ion-input>
+  </ion-item>
+  <br>
+  <ion-item color="none" style="margin-left: 5%; margin-right: 5%;">
+    <ion-label position="stacked" color="primary">LINK 1</ion-label>
+    <ion-input name="link1" placeholder="Link aleatório primário" [(ngModel)]="link1" type="text"></ion-input>
+  </ion-item>
+  <br>
+  <ion-item color="none" style="margin-left: 5%; margin-right: 5%;">
+    <ion-label position="stacked" color="primary">LINK 2</ion-label>
+    <ion-input name="link2" placeholder="Link aleatório secundário" [(ngModel)]="link2" type="text"></ion-input>
+  </ion-item>
+  <br>
+  <ion-item color="none" style="margin-left: 5%; margin-right: 5%;">
+    <ion-label position="stacked" color="primary">LINK 3</ion-label>
+    <ion-input name="link3" placeholder="Link aleatório terciário" [(ngModel)]="link3" type="text"></ion-input>
+  </ion-item>
+  <br>
+  <ion-button size="smal" style="margin: 5%;" expand="block" color="primary" (click)="publicarNoticia()">Publicar notícia</ion-button>
+  <br>
+  <ion-button size="smal" style="margin: 5%;" expand="block" color="danger" (click)="limparCampos()">Limpar campos</ion-button>
+</ion-content>

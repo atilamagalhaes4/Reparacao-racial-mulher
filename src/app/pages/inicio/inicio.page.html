@@ -1,0 +1,71 @@
+<!--<ion-header style="background: #339967;">
+  <ion-toolbar style="margin-top: 10%;" color=primary>
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>INÍCIO</ion-title>
+  </ion-toolbar>
+</ion-header>
+-->
+<ion-content>
+
+  <ion-toolbar color="light">
+    <ion-buttons slot="end" style="margin-top: 10%;" color="light">
+      <ion-menu-button>
+        <ion-icon color="primary" name="ellipsis-vertical"></ion-icon>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title>Notícias</ion-title>
+  </ion-toolbar>
+
+  <ion-item lines ="none">
+    <ion-label>
+      <ion-input [(ngModel)]="pesquisa" required="false" (ionChange)="pesquisaRapida()" type="search" placeholder="Pesquisar notícia"></ion-input>
+    </ion-label>
+    <ion-icon  slot="start" color="primary" name="search-outline"></ion-icon>
+  </ion-item>
+
+
+  <ion-refresher color="primary" slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content>
+    </ion-refresher-content>
+  </ion-refresher>
+
+
+
+  <ion-list-header  style="font-weight: bold;background: transparent;">
+    <ion-label color="secondary">Feed de notícias</ion-label>
+  </ion-list-header>
+
+  <ion-list-header  style="background: transparent; font-weight: bold;" *ngIf=" noticias.length ==0">
+    <ion-label color="primary">Não há publicações ...</ion-label>
+  </ion-list-header>
+
+
+  <ion-list lines=full style="background: transparent;" *ngFor="let c of noticias">
+    <ion-card  routerLink="/visualizar-noticias/{{c.id}}">
+      <ion-card-content style="background: rgb(255, 255, 255);">
+        <div style="margin-left: 5%; margin-right: 5%;">
+          <img width="100%"
+            [src]="c.imagem"><br>
+        </div>
+
+        <p style="color: #339967; font-weight: bold; text-align: center; margin-bottom: 5%; font-size: large;"> {{c.titulo}} </p>
+    
+        <br>
+        
+        <p style="text-align: justify;" [innerHTML]="c.assunto"><br></p><br>
+        <!--
+        <ion-label><br>Publicado em {{c.dataPublicacao}}, por {{c.nome}}</ion-label><br>-->
+      </ion-card-content>
+    </ion-card>
+
+  </ion-list>
+
+  <ion-fab style="margin: 5%;" vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="medium" (click)="botaoPanico()">
+      <ion-icon color="danger" name="megaphone-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

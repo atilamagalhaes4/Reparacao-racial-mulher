@@ -1,0 +1,116 @@
+<!--
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-title>Central de mensagens</ion-title>
+    <ion-buttons slot="end" style="margin-top: 10%;" color="light">
+      <ion-menu-button>
+        <ion-icon color="primary" name="ellipsis-vertical"></ion-icon>
+      </ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+</ion-header>
+ 
+<ion-content #content>
+
+  <ion-list style="background-color: transparent; overflow: scroll; height: xyz;" *ngFor="let c of chat">   
+    <ion-card *ngIf="c.tipo == 'enviado' && (categoria == 'usuario' || categoria == 'policial')"
+      style="background: #e1f6cb; margin: 5%; min-height: 50px !important; min-width: 25%; max-width: 75%; float: right;">
+      <div class="mensagemEnviada" style="margin: 5% !important; color: black;">
+        <p>
+          {{c.mensagem}}
+        </p>
+      </div>
+      <ion-item lines="none" color = transparent>
+        <ion-label style="font-size: xx-small; color: rgb(78, 78, 78); text-align: right;">
+          {{c.dataMensagem}}
+        </ion-label>
+        <ion-icon style="font-size: xx-small; margin-left: 0px; margin-right: 0px;" name="time-outline" color="primary">
+        </ion-icon>
+      </ion-item>
+    </ion-card><br>
+
+    <ion-card *ngIf="c.tipo == 'recebido' && (categoria == 'usuario' || categoria == 'policial')"
+      style="margin: 5%; min-height: 50px !important; min-width: 25%; max-width: 75%; float: left;">
+      <div class="mensagemRecebida" style="margin: 5% !important; color: black;">
+        <p>
+          {{c.mensagem}}
+        </p>
+      </div>
+      <ion-item lines="none">
+        <ion-icon style="font-size: xx-small; margin-left: 0px; margin-right: 0px;" name="time-outline" color="primary">
+        </ion-icon>
+        <ion-label style="font-size: xx-small; color: rgb(78, 78, 78); text-align: left;">
+          {{c.dataMensagem}}
+        </ion-label>
+      </ion-item>
+    </ion-card><br>
+
+
+
+
+
+
+
+
+
+    
+    <ion-card *ngIf="c.tipo == 'recebido' && categoria == 'administrador'"
+      style="background: #e1f6cb; margin: 5%; min-height: 50px !important; min-width: 25%; max-width: 75%; float: right;">
+      <div class="mensagemEnviada" style="margin: 5% !important; color: black; background: transparent;">
+        <p>
+          {{c.mensagem}}
+        </p>
+      </div>
+      <ion-item color="transparent" lines="none">
+        <ion-label style="font-size: xx-small; color: rgb(78, 78, 78); text-align: right;">
+          {{c.dataMensagem}}
+        </ion-label>
+        <ion-icon style="font-size: xx-small; margin-left: 0px; margin-right: 0px;" name="time-outline" color="primary">
+        </ion-icon>
+      </ion-item>
+    </ion-card><br>
+
+    <ion-card *ngIf="c.tipo == 'enviado' && categoria == 'administrador'"
+      style="margin: 5%; min-height: 50px !important; min-width: 25%; max-width: 75%; float: left;">
+      <div class="mensagemRecebida" style="margin: 5% !important; color: black;">
+        <p>
+          {{c.mensagem}}
+        </p>
+      </div>
+      <ion-item lines="none">
+        <ion-icon style="font-size: xx-small; margin-left: 0px; margin-right: 0px;" name="time-outline" color="primary">
+        </ion-icon>
+        <ion-label style="font-size: xx-small; color: rgb(78, 78, 78); text-align: left;">
+          {{c.dataMensagem}}
+        </ion-label>
+      </ion-item>
+    </ion-card><br>
+  </ion-list>
+
+</ion-content>
+<ion-footer>
+  <ion-item lines="None" *ngIf="categoria == 'usuario' || categoria == 'policial' ">
+    <ion-icon slot="end" *ngIf="textoDigitado == ''" color="primary" name="send-outline"></ion-icon>
+    <ion-icon slot="end" (click)="enviarMensagem('enviado')" *ngIf="textoDigitado != ''" color="primary" name="send">
+    </ion-icon>
+    <ion-input color="transparent" (keyup.enter)="enviarMensagem('enviado')" type="text" placeholder="Digite aqui ..." [(ngModel)]="textoDigitado"></ion-input>
+  </ion-item>
+
+
+  <ion-item lines="None" *ngIf="categoria == 'administrador' && exibirInput == true">
+    <ion-icon slot="start" (click)="voltarOpcoes()" color="primary"  name="arrow-undo-outline"></ion-icon>
+    <ion-icon slot="end" *ngIf="textoDigitado == ''" color="primary" name="send-outline"></ion-icon>
+    <ion-icon slot="end"  (click)="enviarMensagem('recebido')"*ngIf="textoDigitado != ''" color="primary" name="send">
+    </ion-icon>
+    <ion-input color="transparent" type="text" (keyup.enter)="enviarMensagem('recebido')" placeholder="Digite aqui ..." [(ngModel)]="textoDigitado"></ion-input>
+  </ion-item>
+
+  <ion-item lines="None" *ngIf="categoria == 'administrador' && exibirInput == false">
+    <ion-label color="primary">Usuarios</ion-label>
+    <ion-select (ionChange) ="pegarChatAdministrador()" [(ngModel)]="id" interface="action-sheet"cancelText="Cancelar">
+      <ion-select-option *ngFor="let user of usuarios" [value]="user.id">{{user.nome}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+</ion-footer>
+-->

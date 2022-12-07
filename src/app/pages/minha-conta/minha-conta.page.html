@@ -1,0 +1,82 @@
+<!--<ion-header style="background: #339967;">
+  <ion-toolbar style="margin-top: 10%;" color = "primary">
+    <ion-buttons  slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>MINHA CONTA</ion-title> 
+  </ion-toolbar>
+</ion-header>
+-->
+
+<ion-content  padding>
+<ion-toolbar color="light">
+
+  <ion-title>Minha conta</ion-title>
+
+  <ion-buttons slot="end" style="margin-top: 10%;" color="light">
+    <ion-menu-button>
+      <ion-icon color="primary" name="ellipsis-vertical"></ion-icon>
+    </ion-menu-button>
+  </ion-buttons>
+
+</ion-toolbar>
+<ion-list-header style="background-color: white; margin-top: 0px;"  lines="full">
+  <ion-label color="primary">Altere ou confira os dados digitados</ion-label>
+</ion-list-header>
+<br>
+  <div style="width:100%;text-align: center;align-content: center;align-self: center;">
+    <img src="../../../assets/image/logo.png" width="45%" >
+  </div>
+  <ion-item lines = "full" color="none" style="margin-left: 5%; margin-right: 5%;">
+    <ion-label position="stacked" color = "primary">Nome completo</ion-label>
+    <ion-input type = "text" name = "nome"placeholder ="Informe seu nome completo" [(ngModel)] = "nome" required="false" ></ion-input>
+  </ion-item>
+  <ion-item lines = "full" color="none" style="margin-left: 5%; margin-right: 5%;">
+    <ion-label position="stacked" color = "primary">Email</ion-label>
+    <ion-input required="false"name = "email"placeholder ="Informe o seu email" [(ngModel)] = "email" type = "email"></ion-input>
+  </ion-item>
+  <ion-item lines = "full" color="none" style="margin-left: 5%; margin-right: 5%;">
+    <ion-label position="stacked" color = "primary">CPF</ion-label>
+    <ion-input required="false"name = "cpf" placeholder ="Informe seu CPF" (ionChange)="ajustarCPF()"minlength ="14" maxlength="14" [(ngModel)] = "cpf" type = "tel"></ion-input>
+  </ion-item>
+  <ion-item lines = "full" color="none" style="margin-left: 5%; margin-right: 5%;">
+    <ion-label position="stacked" color = "primary">Telefone</ion-label>
+    <ion-input required="false"name = "telefone"placeholder ="Informe seu numero de telefone" [(ngModel)] = "telefone" type = "tel"></ion-input>
+  </ion-item>
+  <ion-item lines = "full" color="none" style="margin-left: 5%; margin-right: 5%;">
+    <ion-label position="stacked" color = "primary">Endereco</ion-label>
+    <ion-input required="false"name = "rua" [(ngModel)] = "rua" placeholder="Informe o seu endereço" type = "email"></ion-input>
+  </ion-item>
+  <ion-item lines = "full" color="none" style="margin-left: 5%; margin-right: 5%;">
+    <ion-label position="stacked" color = "primary">Numero</ion-label>
+    <ion-input required="false"name = "numero" placeholder="Numero da casa" minlength ="0" maxlength="5" [(ngModel)] = "cpf" type = "tel"></ion-input>
+  </ion-item>
+  <ion-item lines = "full" color="none" style="margin-left: 5%; margin-right: 5%;">
+    <ion-label position="stacked" color = "primary">Referência</ion-label>
+    <ion-input required="false"name = "referencia" [(ngModel)] = "referencia" placeholder="Ponto de referencia" type = "tel"></ion-input>
+  </ion-item>
+  <ion-item lines = "full" color="none" style="margin-left: 5%; margin-right: 5%;">
+    <ion-label position="stacked" color = "primary">Senha atual</ion-label>
+    <ion-input required="false" name = "senha" placeholder ="Informe a senha atual" [(ngModel)] = "senhaAtual"type = "password"></ion-input>
+  </ion-item>
+  <ion-item lines = "full" color="none" style="margin-left: 5%; margin-right: 5%;">
+    <ion-label position="stacked" color = "primary">Senha</ion-label>
+    <ion-input required="false" name = "senha" placeholder ="Informe a nova senha" [(ngModel)] = "senha"type = "password"></ion-input>
+  </ion-item>
+  <ion-item lines = "full" color="none" style="margin-left: 5%; margin-right: 5%;">
+    <ion-label position="stacked" color = "primary">Confirmar senha</ion-label>
+    <ion-input required="false" name = "senha1" placeholder ="Repita a nova senha" [(ngModel)] = "senha1" type = "password"></ion-input>
+  </ion-item>
+ <br>
+  <br>
+  <ion-grid>
+      <ion-row>
+        <ion-col size = "6">
+          <ion-button size="small" style="margin-left: 2.5%; margin-right: 2.5%;" expand="block" color="primary" (click) = "atualizarConta()">Atualizar conta</ion-button>
+        </ion-col>
+        <ion-col size = "6">
+          <ion-button size="small" style="margin-left: 2.5%; margin-right: 2.5%;" expand="block" color="danger" (click) = "excluirConta()">Excluir conta</ion-button>
+        </ion-col>
+      </ion-row>
+      </ion-grid>
+</ion-content>

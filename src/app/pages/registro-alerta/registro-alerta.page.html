@@ -1,0 +1,185 @@
+<!--<ion-header style="background: #339967;">
+  <ion-toolbar style="margin-top: 10%;" color="primary">
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>REGISTROS DE ALERTA</ion-title>
+  </ion-toolbar>
+</ion-header>
+-->
+<ion-content>
+  <ion-toolbar color="light">
+
+    <ion-title>Registro de alertas</ion-title>
+
+    <ion-buttons slot="end" style="margin-top: 10%;" color="light">
+      <ion-menu-button>
+        <ion-icon color="primary" name="ellipsis-vertical"></ion-icon>
+      </ion-menu-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+  <ion-list-header style="background-color: white; margin-top: 0px;"  lines="full">
+    <ion-label color="primary">Todas as solicitações pendentes, em andamento e concluido.</ion-label>
+  </ion-list-header>
+  <br>
+
+  <ion-refresher color="primary" slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content>
+    </ion-refresher-content>
+  </ion-refresher>
+
+
+  <ion-item lines="full">
+    <ion-label style="font-weight: bold;" color="primary">
+      Pendentes
+    </ion-label>
+  </ion-item>
+
+  <p *ngIf="verificarPendente == false" style="text-align: center;">
+    Não há registro.
+  </p>
+
+  <ion-list style="background: transparent;" lines="none" *ngFor="let c of registro">
+    <ion-card style="background: rgb(249,249,249);" *ngIf="categoria == 'usuario' && c.situacaoStatus == 'pendente' ">
+      <ion-card-header>
+        <ion-card-title>{{c.nome}}</ion-card-title>
+        <ion-card-subtitle>
+          <strong>Situação:</strong> {{c.situacaoStatus}}
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <strong>rua:</strong> {{c.rua}}<br>
+        <strong>Numero:</strong> {{c.numero}}<br>
+        <strong>Referência:</strong> {{c.referencia}}<br>
+        <strong>Data:</strong> {{c.dataSolicitacao}}<br>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card style="background: rgb(249,249,249);" *ngIf="(categoria == 'administrador' || categoria == 'policial') && c.situacaoStatus == 'pendente' ">
+      <ion-card-header>
+        <ion-card-title>{{c.nome}}</ion-card-title>
+        <ion-card-subtitle>
+          <strong>Situação:</strong> {{c.situacaoStatus}}
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <strong>rua:</strong> {{c.rua}}<br>
+        <strong>Numero:</strong> {{c.numero}}<br>
+        <strong>Referência:</strong> {{c.referencia}}<br>
+        <strong>Data:</strong> {{c.dataSolicitacao}}<br>
+        <ion-button expand="block" fill="outline" (click)="confirmarIda(c.id, c.localAtual,c.nome, c.rua, c.numero, c.referencia, c.idNotificacao)">Confirmar disponibilidade</ion-button>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+<!-------------------------------------------------------------------------------------------->
+
+<ion-item lines="full">
+  <ion-label  style="font-weight: bold;"color="primary">
+    Em andamento
+  </ion-label>
+</ion-item>
+
+<p *ngIf="verificareEmAndamento == false" style="text-align: center;">
+  Não há registro.
+</p>
+
+<ion-list style="background: transparent;" lines="none" *ngFor="let c of registro">
+  <ion-card style="background: rgb(249,249,249);" *ngIf="categoria == 'usuario' && c.situacaoStatus == 'em andamento' ">
+    <ion-card-header>
+      <ion-card-title>{{c.nome}}</ion-card-title>
+      <ion-card-subtitle>
+        <strong>Situação:</strong> {{c.situacaoStatus}}
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <strong>rua:</strong> {{c.rua}}<br>
+      <strong>Numero:</strong> {{c.numero}}<br>
+      <strong>Referência:</strong> {{c.referencia}}<br>
+      <strong>Data:</strong> {{c.dataSolicitacao}}<br>
+      <strong>Responsável:</strong> {{c.responsavel}}<br><br>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card style="background: rgb(249,249,249);" *ngIf="(categoria == 'administrador' || categoria == 'policial') && c.situacaoStatus == 'em andamento' ">
+    <ion-card-header>
+      <ion-card-title>{{c.nome}}</ion-card-title>
+      <ion-card-subtitle>
+        <strong>Situação:</strong> {{c.situacaoStatus}}
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <strong>rua:</strong> {{c.rua}}<br>
+      <strong>Numero:</strong> {{c.numero}}<br>
+      <strong>Referência:</strong> {{c.referencia}}<br>
+      <strong>Data:</strong> {{c.dataSolicitacao}}<br>
+      <strong>Responsável:</strong> {{c.responsavel}}<br><br>
+      <ion-button expand="block" (click)="irMaps(c.localAtual)" fill="outline">Abrir google maps</ion-button>
+      <br>
+      <ion-item  color ="transparent" lines = "full" *ngIf="c.observacaoPolicial == '' && c.responsavel == nome">
+        <ion-label position="stacked">Nota de análise</ion-label>
+        <ion-textarea [(ngModel)]="observacaoPolicial" rows="6" cols="20" placeholder="Clique aqui e informe o seu ponto de vista sobre o caso ..."></ion-textarea>
+      </ion-item>
+      <ion-button expand="block" (click)="concluirCaso(c.id)" fill="solid">concluir caso</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-list>
+
+<!-------------------------------------------------------------------------------------------->
+
+
+
+  <ion-item lines="full">
+    <ion-label  style="font-weight: bold;"color="primary">
+      Concluido
+    </ion-label>
+  </ion-item>
+
+  <p *ngIf="verificarConcluido == false" style="text-align: center;">
+    Não há registro.
+  </p>
+
+  <ion-list style="background: transparent;" lines="none" *ngFor="let c of registro">
+    <ion-card style="background: rgb(249,249,249);" *ngIf="categoria == 'usuario' && c.situacaoStatus == 'concluido' ">
+      <ion-card-header>
+        <ion-card-title>{{c.nome}}</ion-card-title>
+        <ion-card-subtitle>
+          <strong>Situação:</strong> {{c.situacaoStatus}}
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <strong>rua:</strong> {{c.rua}}<br>
+        <strong>Numero:</strong> {{c.numero}}<br>
+        <strong>Referência:</strong> {{c.referencia}}<br>
+        <strong>Data:</strong> {{c.dataSolicitacao}}<br>
+        <strong>Responsável:</strong> {{c.responsavel}}<br><br>
+        <strong>Nota do responsável:</strong> {{c.observacaoPolicial}}<br>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card style="background: rgb(249,249,249);" *ngIf="( categoria == 'administrador' || categoria == 'policial') && c.situacaoStatus == 'concluido' ">
+      <ion-card-header>
+        <ion-card-title>{{c.nome}}</ion-card-title>
+        <ion-card-subtitle>
+          <strong>Situação:</strong> {{c.situacaoStatus}}
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <strong>rua:</strong> {{c.rua}}<br>
+        <strong>Numero:</strong> {{c.numero}}<br>
+        <strong>Referência:</strong> {{c.referencia}}<br>
+        <strong>Data:</strong> {{c.dataSolicitacao}}<br>
+        <strong>Responsável:</strong> {{c.responsavel}}<br>
+        <strong *ngIf="c.observacaoPolicial !=''">Nota do responsável:</strong> {{c.observacaoPolicial}}<br>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+</ion-content>

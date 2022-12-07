@@ -1,0 +1,41 @@
+<!--<ion-header style="background: #339967;">
+
+  <ion-toolbar style="margin-top: 10%;" color="primary">
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      SAIR
+    </ion-title>
+  </ion-toolbar>
+</ion-header>-->
+
+<ion-content>
+  
+  <ion-toolbar color="light">
+    <ion-buttons slot="end" style="margin-top: 10%;" color="light">
+      <ion-menu-button>
+        <ion-icon color="primary" name="ellipsis-vertical"></ion-icon>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title>Sair</ion-title>
+  </ion-toolbar>
+  <ion-list-header style="background-color: white; margin-top: 0px;"  lines="full">
+    <ion-label color="primary">Selecione uma opção</ion-label>
+  </ion-list-header>
+
+
+  <div style="width:100%;text-align: center;align-content: center;align-self: center;">
+    <img src="../../../assets/image/logo.png" width="70%">
+  </div>
+  <br>
+  <ion-item style="margin: 5%;" color="none" lines = "none" *ngIf="logado == true">
+    <ion-label color="primary">Sair da conta</ion-label>
+    <ion-button fill="solid" expand="block" (click)="fazerLogout()" color="primary">Confirmar</ion-button>
+  </ion-item>
+  <ion-item style="margin: 5%;" color="none" lines = "none">
+    <ion-label color="primary">Sair do app</ion-label>
+    <ion-button (click)="sairGeral()" fill="solid" expand="block" color="primary">Confirmar</ion-button>
+  </ion-item>
+
+</ion-content>

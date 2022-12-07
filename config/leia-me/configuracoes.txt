@@ -1,0 +1,12 @@
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore -pegadaEcologica.keystore  app-release.aab alias_pegadaEcologica
+
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore -serrmu.keystore  app-release-unsigned.apk alias_serrmu
+
+zipalign -v 4 app-release-unsigned.apk app-serrmu.apk
+
+44029476
+
+Fonte utilizada : Snap ITC
+
+keytool -genkey -v -keystore serrmu.keystore -alias alias_serrmu -keyalg RSA -keysize 2048 -validity 10000
+44029476a

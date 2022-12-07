@@ -1,0 +1,110 @@
+<!--<ion-header style="background: #339967;">
+  <ion-toolbar style="margin-top: 10%;" color="primary">
+    <ion-buttons slot="end">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>DISK DENÚNCIA</ion-title>
+  </ion-toolbar>
+</ion-header>-->
+
+<ion-content>
+  <ion-toolbar color="light">
+    <ion-buttons slot="end" style="margin-top: 10%;" color="light">
+      <ion-menu-button>
+        <ion-icon color="primary" name="ellipsis-vertical"></ion-icon>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title>Disk denúncia</ion-title>
+  </ion-toolbar>
+  <ion-list-header *ngIf="categoria != 'administrador'" style="background-color: white; margin-top: 0px;" lines="full">
+    <ion-label color="primary">Selecione uma categoria</ion-label>
+  </ion-list-header>
+  <ion-list-header *ngIf="categoria == 'administrador'" style="background-color: white; margin-top: 0px;" lines="full">
+    <ion-label color="primary">Confira todos os registros</ion-label>
+  </ion-list-header>
+
+  <ion-refresher color="primary" slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content>
+    </ion-refresher-content>
+  </ion-refresher>
+  <ion-list style="background-color: transparent;" lines="none" *ngIf="categoria != 'administrador'">
+    <ion-slides style="height: 200px; margin-top: -5%;" pager="false" [options]="slideOpts">
+      <ion-slide (click)="selecionarCategoria('Racismo')">
+        <ion-avatar [style]="stilo1">
+          <img style="display: block;margin-left: auto;margin-right: auto" width="60px" height="60px"
+            src="../../../assets/image/racial.png">
+          <p style="text-align: center; font-size: x-small;">Racismo</p>
+        </ion-avatar>
+      </ion-slide>
+      <ion-slide (click)="selecionarCategoria('Violência contra a mulher')">
+        <ion-avatar [style]="stilo2">
+          <img style="display: block;margin-left: auto;margin-right: auto" width="60px" height="60px"
+            src="../../../assets/image/mulher.png">
+          <p style="text-align: center; font-size: x-small;">Violência contra a mulher </p>
+        </ion-avatar>
+      </ion-slide>
+      <ion-slide (click)="selecionarCategoria('Racismo religioso')">
+        <ion-avatar [style]="stilo3">
+          <img style="display: block;margin-left: auto;margin-right: auto" width="60px" height="60px"
+            src="../../../assets/image/infantil.png">
+          <p style="text-align: center; font-size: x-small;">Racismo religioso</p>
+        </ion-avatar>
+      </ion-slide>
+      <ion-slide (click)="selecionarCategoria('Lgbtfobia')">
+        <ion-avatar [style]="stilo4">
+          <img style="display: block;margin-left: auto;margin-right: auto" width="60px" height="60px"
+            src="../../../assets/image/lgbt.png">
+          <p style="text-align: center; font-size: x-small;">Lgbtfobia</p>
+        </ion-avatar>
+      </ion-slide>
+    </ion-slides>
+
+    <ion-item color="none" lines="none" style="margin: 5%;">
+      <ion-label color="primary">Modo anônimo</ion-label>
+      <ion-checkbox slot="end" (ionChange)="verificarAnonimo()" [(ngModel)]="anonimo"></ion-checkbox>
+    </ion-item>
+    <ion-item color="none" lines="full" *ngIf="!anonimo" style="margin: 5%;">
+      <ion-label position="stacked" color="primary">Nome completo</ion-label>
+      <ion-input type="text" placeholder="Informe seu nome completo" [(ngModel)]="nome" required="false"></ion-input>
+    </ion-item>
+    <ion-item color="none" lines="full" *ngIf="!anonimo" style="margin: 5%;">
+      <ion-label position="stacked" color="primary">Email</ion-label>
+      <ion-input required="false" [(ngModel)]="email" placeholder="Informe o seu email" type="email">
+      </ion-input>
+    </ion-item>
+    <ion-item color="none" lines="full" style="margin: 5%;">
+      <ion-label position="stacked" color="primary">Assunto</ion-label>
+      <ion-input required="false" placeholder="Informe o assunto a ser tratado." [(ngModel)]="assunto" type="text">
+      </ion-input>
+    </ion-item>
+    <ion-item color="none" lines="full" style="margin: 5%;">
+      <ion-label position="stacked" color="primary">Mensagem</ion-label>
+      <ion-textarea rows="8" cols="20" [(ngModel)]="mensagem"
+        placeholder="Escreva aqui sua sujestão, dúvida ou critica ..."></ion-textarea>
+    </ion-item>
+
+    <ion-button style="margin: 5% !important;" fill="solid" expand="block" color="primary" (click)="enviarMensagem()">
+      Enviar mensagem</ion-button>
+  </ion-list>
+
+  <ion-list style="background-color: transparent;" lines="none" *ngFor="let c of denuncias">
+    <ion-card style="background: rgb(255, 255, 255);"  *ngIf="categoria == 'administrador'">
+      <ion-card-header>
+        <ion-card-title>{{c.nome}}</ion-card-title>
+        <ion-card-subtitle>
+          <strong>Email:</strong> {{c.email}}<br>
+          <strong>Categoria:</strong> {{c.categoriaMensagem}}
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <strong>Assunto:</strong> {{c.assunto}}<br><br>
+        <strong>Mensagem:</strong> {{c.mensagem}}<br>
+        <strong>Data:</strong> {{c.dataMensagem}}<br>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+  <p *ngIf="denuncias.lenght == 0 && categoria == 'administrador'" style="text-align: center;">
+    Não há registro.
+  </p>
+</ion-content>

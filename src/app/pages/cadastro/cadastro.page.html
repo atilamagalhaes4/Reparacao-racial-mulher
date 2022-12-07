@@ -1,0 +1,76 @@
+<!--<ion-header style="background: #339967;">
+  <ion-toolbar style="margin-top: 10%;" color = "primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>CRIAR CONTA</ion-title>
+  </ion-toolbar>
+</ion-header>
+-->
+<ion-content>
+  <ion-toolbar color="light">
+    <ion-title>Crie sua conta</ion-title>
+
+    <ion-buttons slot="end" style="margin-top: 10%;" color="light">
+      <ion-menu-button>
+        <ion-icon color="primary" name="ellipsis-vertical"></ion-icon>
+      </ion-menu-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+  <ion-list-header style="background-color: white; margin-top: 0px;"  lines="full">
+    <ion-label color="primary">E tenha acesso a todas as funções do aplicativo</ion-label>
+  </ion-list-header>
+  <br>
+
+  <div style="width:100%;text-align: center;align-content: center;align-self: center;">
+    <img src="../../../assets/image/logo.png" width="45%" >
+  </div>
+  <ion-item color="none" lines = "full" style="margin: 5%;">
+    <ion-label position="stacked" color = "primary">Nome completo</ion-label>
+    <ion-input type = "text" name = "nome" placeholder="Informe seu nome completo" [(ngModel)] = "nome" required="true" ></ion-input>
+  </ion-item>
+  <ion-item color="none" lines = "full" style="margin: 5%;">
+    <ion-label position="stacked" color = "primary">Email</ion-label>
+    <ion-input required="true"name = "email" [(ngModel)] = "email" placeholder="Informe o seu email" type = "email"></ion-input>
+  </ion-item>
+  <ion-item color="none" lines = "full" style="margin: 5%;">
+    <ion-label position="stacked" color = "primary">CPF</ion-label>
+    <ion-input required="true" name = "cpf" (ionChange)="ajustarCPF()" placeholder="Informe seu CPF" minlength ="14" maxlength="14" [(ngModel)] = "cpf" type = "tel"></ion-input>
+  </ion-item>
+  <ion-item color="none" lines = "full" style="margin: 5%;">
+    <ion-label position="stacked" color = "primary">Telefone</ion-label>
+    <ion-input required="true"name = "telefone" [(ngModel)] = "telefone" placeholder="Informe seu numero de telefone" type = "tel"></ion-input>
+  </ion-item>
+  <ion-item color="none" lines = "full" style="margin: 5%;">
+    <ion-label position="stacked" color = "primary">Endereço</ion-label>
+    <ion-input required="true"name = "rua" [(ngModel)] = "rua" placeholder="Informe o seu endereço" type = "email"></ion-input>
+  </ion-item>
+  <ion-item color="none" lines = "full" style="margin: 5%;">
+    <ion-label position="stacked" color = "primary">Numero</ion-label>
+    <ion-input required="true"name = "numero" placeholder="Numero da casa" minlength ="0" maxlength="5" [(ngModel)] = "numero" type = "text"></ion-input>
+  </ion-item>
+  <ion-item color="none" lines = "full" style="margin: 5%;">
+    <ion-label position="stacked" color = "primary">Referência</ion-label>
+    <ion-input required="true"name = "referencia" [(ngModel)] = "referencia" placeholder="Ponto de referencia" type = "text"></ion-input>
+  </ion-item>
+  <ion-item color="none" lines = "full" style="margin: 5%;">
+    <ion-label position="stacked" color = "primary">Senha</ion-label>
+    <ion-input required="true" name = "senha" [(ngModel)] = "senha"  placeholder="Informe a senha" type = "password"></ion-input>
+  </ion-item>
+  <ion-item color="none" lines = "full" style="margin: 5%;">
+    <ion-label position="stacked" color = "primary">Confirmar senha</ion-label>
+    <ion-input required="true" name = "senha1" [(ngModel)] = "senha1" placeholder="Repita a senha" type = "password"></ion-input>
+  </ion-item>
+
+ <ion-grid>
+  <ion-row>
+    <ion-col size="1"></ion-col>
+    <ion-col size="10">
+ <ion-button fill="solid" expand="block"  color="primary" (click) = "verificarCriacaoDeConta()">Criar conta</ion-button>  
+    </ion-col>
+    <ion-col size="1"></ion-col>
+  </ion-row>
+ </ion-grid>
+
+</ion-content>

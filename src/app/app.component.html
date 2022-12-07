@@ -1,0 +1,84 @@
+<ion-app>
+  <ion-split-pane contentId="main-content">
+    <ion-menu contentId="main-content" type="overlay">
+      <ion-content>
+
+        <ion-list>
+          <!--id="inbox-list"-->
+          <ion-list-header>
+            <img width="74%" src="../assets/image/logo.png" alt="Secretaria de Reparação Racial e da Mulher"
+              title="Secretaria de Reparação Racial e da Mulher">
+          </ion-list-header>
+          <p style="text-align: center;">Secretaria de Reparação Racial e da Mulher</p>
+
+          <ion-menu-toggle auto-hide="false">
+
+            <ion-item routerDirection="root" routerLink="/inicio" lines="none" detail="false"
+              routerLinkActive="selected">
+              <ion-icon slot="start" name="home-outline"></ion-icon>
+              <ion-label>Inicio</ion-label>
+            </ion-item>
+
+            <ion-item routerDirection="root" *ngIf="estaLogado == false" routerLink="/login" lines="none" detail="false"
+              routerLinkActive="selected">
+              <ion-icon slot="start" name="log-in-outline"></ion-icon>
+              <ion-label>Login</ion-label>
+            </ion-item>
+
+            <ion-item routerDirection="root" *ngIf="estaLogado == true" routerLink="/minha-conta" lines="none" detail="false"
+              routerLinkActive="selected">
+              <ion-icon slot="start" name="person-circle-outline"></ion-icon>
+              <ion-label>Minha conta</ion-label>
+            </ion-item>
+            
+            <ion-item routerDirection="root" routerLink="/disk-denuncia" lines="none" detail="false"
+              routerLinkActive="selected">
+              <ion-icon slot="start" name="paper-plane-outline"></ion-icon>
+              <ion-label>Disk denúncia</ion-label>
+            </ion-item>
+            
+            <ion-item routerDirection="root" *ngIf="estaLogado == true" routerLink="/registro-alerta" lines="none" detail="false"
+              routerLinkActive="selected">
+              <ion-icon slot="start" name="receipt-outline"></ion-icon>
+              <ion-label>Registros de alerta</ion-label>
+            </ion-item>
+
+            <ion-item routerDirection="root" *ngIf="categoria == 'administrador'"  routerLink="/publicar-noticias" lines="none" detail="false"
+              routerLinkActive="selected">
+              <ion-icon slot="start" name="paper-plane-outline"></ion-icon>
+              <ion-label>Publicar noticias</ion-label>
+            </ion-item>
+<!--
+            <ion-item routerDirection="root"*ngIf="estaLogado == true" routerLink="/chat" lines="none" detail="false"
+              routerLinkActive="selected">
+              <ion-icon slot="start" name="chatbubble-outline"></ion-icon>
+              <ion-label>Chat</ion-label>
+            </ion-item>
+-->
+            <ion-item routerDirection="root" routerLink="/contato" lines="none" detail="false"
+              routerLinkActive="selected">
+              <ion-icon slot="start"  name="call-outline"></ion-icon>
+              <ion-label>Contatos</ion-label>
+            </ion-item>
+
+            <ion-item routerDirection="root"  routerLink="/sair"lines="none" detail="false"
+              routerLinkActive="selected">
+              <ion-icon  slot="start" name="exit-outline"></ion-icon>
+              <ion-label>Sair</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+        <div style="border: thin #f1f1f1 dashed; margin-top: 5%;margin-bottom: 5%;">
+        </div>
+        <!--
+        <div>
+          <img width="74%" style="display: block;margin-left: auto;margin-right: auto" src="../assets/image/logo-maragojipe.png" alt="Prefeitura de Maragojipe"
+            title="Prefeitura de Maragojipe">
+            <p style="text-align: center;">Desenvolvido por<br><a target="_blank" href="https://geniodigital.com/" style="text-decoration: none;text-align: center; color: rgb(83,191,238);">Genio Digital</a></p>
+        </div>-->
+
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

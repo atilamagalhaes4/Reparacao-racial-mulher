@@ -1,0 +1,71 @@
+<!--<ion-header style="background: #339967;">
+  <ion-toolbar style="margin-top: 10%;" color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title>SISTEMA DE MENSAGENS</ion-title>
+  </ion-toolbar>
+</ion-header>-->
+
+<ion-content padding>
+
+  <ion-toolbar color="light">
+    <ion-buttons slot="start" style="margin-top: 10%;">
+      <ion-back-button color="primary" defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end" style="margin-top: 10%;" color="light">
+      <ion-menu-button>
+        <ion-icon color="primary" name="ellipsis-vertical"></ion-icon>
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title>Central de<br>mensagens</ion-title>
+  </ion-toolbar>
+  <ion-list-header style="background-color: white; margin-top: 0px;"  lines="full">
+    <ion-label color="primary">Visualize abaixo a matéria completa</ion-label>
+  </ion-list-header>
+  <br>
+  <ion-card>
+    <ion-card-header>
+
+      <ion-card-title style="text-align: center; font-weight: bold; font-size: x-large;" color="primary">{{titulo}}
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+
+      <ion-label [innerHTML]="mensagem"><br></ion-label>
+      <br>
+      <div *ngIf="imagem != ''">
+        <img [src]="imagem">
+      </div>
+      <br>
+      <ion-label [innerHTML]="mensagem2"><br></ion-label>
+      <br>
+      <br>
+      <li *ngIf="link1.length>0">
+        <ion-label color="primary" (click)="openBrowser(link1)"> Abrir Link </ion-label>
+      </li>
+      <br>
+      <li *ngIf="link2.length>0">
+        <ion-label color="primary" (click)="openBrowser(link2)">Abrir Link </ion-label>
+      </li>
+      <br>
+      <li *ngIf="link3.length>0">
+        <ion-label color="primary" (click)="openBrowser(link3)">Abrir Link </ion-label>
+      </li>
+      <br>
+      <li *ngIf="pdf.length>0">
+        <ion-label color="primary" (click)="openBrowser(pdf)">Abrir PDF </ion-label>
+      </li>
+      <br>
+
+
+      <br>
+      <ion-label><br>Publicado em {{dataPublicacao}}, por {{nome}}</ion-label><br><br>
+      <br>
+
+    </ion-card-content>
+  </ion-card>
+
+
+</ion-content>
