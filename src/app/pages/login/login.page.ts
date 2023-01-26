@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { PostProvider } from 'src/app/providers/post-provider';
 import { NativeStorage } from '@awesome-cordova-plugins/native-storage/ngx';
 import { AppComponent } from '../../app.component';
 import { Network } from '@awesome-cordova-plugins/network/ngx';
+import OneSignal from 'onesignal-cordova-plugin';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ export class LoginPage implements OnInit {
   email: string = "";
   senha: string = "";
 
+  idNotificacao: string = "";
 
   constructor(
     private provider: PostProvider,
@@ -23,10 +25,15 @@ export class LoginPage implements OnInit {
     private route: Router,
     private nativeStorage: NativeStorage,
     private setarMenu: AppComponent,
-    private network: Network
+    private network: Network,
+    private toastController: ToastController
   ) { }
 
   ngOnInit() {
+  }
+
+  ionViewWillEnter(){
+    this.pegarIdNotificacao();
   }
 
   fazerLogin() {
@@ -51,6 +58,7 @@ export class LoginPage implements OnInit {
               property: dados, anotherProperty: 'Terá todos os dados da conta do individuo'
             }).then((data2) => {
               this.presentAlert(data['mensagem']);
+              this.atualizarIDNotificacao(data['data'][0].id);
               if (data['data'][0].categoria == "usuario" || data['data'][0].categoria == "policial") {
                 this.setarMenu.opcaoNormal(data['data'][0].categoria);
                 this.route.navigate(["/inicio"]);
@@ -82,6 +90,37 @@ export class LoginPage implements OnInit {
     }
   }
 
+  atualizarIDNotificacao(id){
+    return new Promise(resolve => {
+      let dados = {
+        requisicao: "atualizarID",
+        id: id,
+        tokenFirebase: this.idNotificacao
+      }
+      this.provider.requisicaoPost(dados, "/contas.php").subscribe((data)=>{
+        if(data['status'] == 200){
+          this.presentToast("Sessão iniciada com sucesso.", "success");
+        }
+        else{
+          console.log(JSON.stringify(data));
+        }
+      },(error)=>{
+        console.log(error)
+      })
+    });
+  }
+
+  async presentToast(mensagem, cor) {
+    const toast = await this.toastController.create({
+      message: mensagem,
+      duration: 1500,
+      color: cor,
+      position: "bottom"
+    });
+
+    await toast.present();
+  }
+
   async presentAlert(mensagem) {
     const alert = await this.alertController.create({
       cssClass: 'secondary',
@@ -93,5 +132,14 @@ export class LoginPage implements OnInit {
       }]
     });
     await alert.present();
+  }
+
+
+  
+  pegarIdNotificacao(){
+    OneSignal.getDeviceState((data)=>{
+      var str  =  JSON.stringify(data.userId);
+      this.idNotificacao =  str.split('"').join("");
+    })
   }
 }

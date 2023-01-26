@@ -34,6 +34,7 @@ export class AppComponent {
 
   }
 
+
   OneSignalInit() {
     OneSignal.setAppId("4a1cba7c-4da2-4fb8-812e-723a8144af57"); //Your APP ID
     OneSignal.setNotificationOpenedHandler(function (jsonData) {
@@ -48,7 +49,6 @@ export class AppComponent {
 //      alert(JSON.stringify(data.userId));
     })
   }
-
 
 
 

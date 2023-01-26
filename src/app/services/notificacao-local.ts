@@ -20,7 +20,7 @@ export class notificacaoLocal {
         if (result.channels.find(ch => ch.id === 'AlertaNotificacao') === undefined) {
             const channel1: Channel = {
                 id: 'AlertaNotificacao',
-                name: 'Nossa voz',
+                name: 'Oxe, me respeite !',
                 lightColor: '#f49c21',
                 importance: 5,
                 visibility: 1,

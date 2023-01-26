@@ -8,7 +8,7 @@
 <p align="center">
 <img width ="15%" src="https://i.imgur.com/Hzb8C7L.png"/><br><br>
  Acesse nosso app na playstore:
- [Nossa voz] https://play.google.com/store/apps/details?id=br.gov.ba.maragojipe, mesmo concluído o app ainda passa por testes em todas as funções( usuario, administrador e guarda/policial).
+ [Nossa Oxe, me respeite !] https://play.google.com/store/apps/details?id=br.gov.ba.maragojipe, mesmo concluído o app ainda passa por testes em todas as funções( usuario, administrador e guarda/policial).
 </p>
 <br><br>
 

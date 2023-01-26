@@ -3,12 +3,14 @@ import { Router } from '@angular/router';
 import { Network } from '@awesome-cordova-plugins/network/ngx';
 import { AlertController } from '@ionic/angular';
 import { PostProvider } from 'src/app/providers/post-provider';
+import OneSignal from 'onesignal-cordova-plugin';
 
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.page.html',
   styleUrls: ['./cadastro.page.scss'],
 })
+
 export class CadastroPage implements OnInit {
 
   nome: string = "";
@@ -22,6 +24,8 @@ export class CadastroPage implements OnInit {
   rua: string = "";
   referencia: string = "";
 
+  idNotificacao: string = "";
+
   constructor(
     private provider: PostProvider,
     private alertController: AlertController,
@@ -31,6 +35,13 @@ export class CadastroPage implements OnInit {
 
   ngOnInit() {
   }
+  
+  
+  ionViewWillEnter(){
+    this.pegarIdNotificacao();
+  }
+
+
 
   verificarCriacaoDeConta() {
     if (this.nome == "") {
@@ -85,7 +96,7 @@ export class CadastroPage implements OnInit {
 //            this.presentAlert(data['mensagem']);
             this.criarConta();
           }
-          else if (data['status'] == 200) {
+          else if (data['status'] == 200) { 
             for (let c of data['data']) {
               if (c.email == this.email) {
                 this.presentAlert("Já existe uma conta com este email.<br>Faça login ou entre em contato.");
@@ -109,6 +120,15 @@ export class CadastroPage implements OnInit {
     }
   }
 
+  pegarIdNotificacao(){
+    OneSignal.getDeviceState((data)=>{
+      var str  =  JSON.stringify(data.userId);
+      this.idNotificacao= str.split('"').join("");
+    })
+  }
+  
+
+
   criarConta() {
     return new Promise(resolve => {
       let dados = {
@@ -121,7 +141,8 @@ export class CadastroPage implements OnInit {
         rua: this.rua,
         numero: this.numero,
         referencia: this.referencia,
-        categoria: "usuario"
+        categoria: "usuario",
+        tokenFirebase: this.idNotificacao
       }
       this.provider.requisicaoPost(dados, "/contas.php").subscribe((data) => {
         if (data['status'] == 201) {

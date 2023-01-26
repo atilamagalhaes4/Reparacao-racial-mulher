@@ -1,0 +1,8 @@
+keytool -genkey -v -keystore serrmu.keystore -alias serrmu -keyalg RSA -keysize 2048 -validity 10000
+
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore serrmu.keystore app-release.aab serrmu
+
+zipalign -v 4 app-release.aab app-assinado.aab
+
+
+44029476a

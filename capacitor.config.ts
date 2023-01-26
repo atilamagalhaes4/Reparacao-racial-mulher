@@ -2,8 +2,8 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 
 const config: CapacitorConfig = {
-  appId: 'br.gov.ba.maragojipe',
-  appName: 'Nossa voz',
+  appId: 'com.atilamagalhaes4',
+  appName: 'Oxe, me respeite !', 
   webDir: 'www',
   bundledWebRuntime: false,
   "plugins": {
